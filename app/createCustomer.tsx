@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/Input'
 
 import { useCustomerDatabase, CustomerDatabase } from '@/databases/useCustomerDatabse'
+import Header from '@/layout/Header'
 
 const CreateCustomer = () => {
   const [id, setId] = useState('')
@@ -36,13 +37,18 @@ const CreateCustomer = () => {
   }  
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', padding: 32, gap: 16}}>
+    <View style={{flex: 1}}>
+      <Header />
+
+      <View style={{justifyContent: 'center', padding: 32, gap: 16}}>
       <Input placeholder='Nome' onChangeText={setName} value={name} />
       <Input placeholder='Email' onChangeText={setEmail} value={email}/>
       <Input placeholder='Telefone' onChangeText={setFone} value={fone}/>
       <Input placeholder='Endereço' onChangeText={setAdress} value={address}/>
-
+      
       <Button title='Salvar' onPress={create}/>
+      </View>
+
     </View>
   )
 }

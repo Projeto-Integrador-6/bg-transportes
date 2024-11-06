@@ -25,7 +25,7 @@ const _layout = () => {
         <Tabs.Screen
           name="createCustomer"
           options={{
-            title: 'Clientes',
+            title: 'Cadastrar Clientes',
           }}
         />
         <Tabs.Screen

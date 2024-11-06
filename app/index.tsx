@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, Text } from 'react-native'
 import { router } from 'expo-router'
 
 import { Customer } from '@/components/Customers'
 import { useCustomerDatabase, CustomerDatabase } from '@/databases/useCustomerDatabse'
 import { Input } from '@/components/Input'
+import Header from '@/layout/Header'
 
 const Index = () => {
   const [search, setSearch] = useState('')
@@ -37,7 +38,10 @@ const Index = () => {
 
     
 
-    <View style={{flex: 1, justifyContent: 'center', padding: 32, gap: 16}}> 
+    <View> 
+      <Header />
+
+      <View style={{justifyContent: 'center', padding: 32, gap: 16}}>
       <Input placeholder='Pesquisar' onChangeText={setSearch} value={search} />
       
       <FlatList 
@@ -53,6 +57,7 @@ const Index = () => {
         )}
         contentContainerStyle={{gap: 16}}
       />
+      </View>
     </View>
   )
 }
