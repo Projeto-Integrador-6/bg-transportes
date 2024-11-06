@@ -28,6 +28,12 @@ const _layout = () => {
             title: 'Clientes',
           }}
         />
+        <Tabs.Screen
+          name="[id]"
+          options={{
+            href: null,
+          }}
+        />
       </Tabs>
     </SQLiteProvider>
   )

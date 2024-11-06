@@ -45,5 +45,25 @@ export function useCustomerDatabase(){
             throw error
         }
     }
-    return{ create, searchByName }
+
+    async function show(id:number) {
+        try {
+            const query = "SELECT * FROM clientes WHERE id = ?"
+
+            const response = await database.getFirstAsync<CustomerDatabase>(query, id)
+
+            return response
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async function remove(id:number) {
+        try {
+            await database.execAsync("DELETE FROM clientes WHERE id =" + id)
+        } catch (error) {
+            throw error
+        }
+    }
+    return{ create, searchByName, remove, show }
 }

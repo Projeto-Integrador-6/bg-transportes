@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
+import { router } from 'expo-router'
 
-import createCustomer from './createCustomer'
 import { Customer } from '@/components/Customers'
 import { useCustomerDatabase, CustomerDatabase } from '@/databases/useCustomerDatabse'
+import { Input } from '@/components/Input'
 
 const Index = () => {
   const [search, setSearch] = useState('')
@@ -19,31 +20,41 @@ const Index = () => {
     }
   }
 
+  async function remove(id: number) {
+    try {
+      await customerDatabase.remove(id)
+      await list()
+    } catch (error) {
+      throw error
+    }
+  }
+
   useEffect(()=> {
     list()
   }, [search])
 
   return (
-    <View style={styles.container}>
+
+    
+
+    <View style={{flex: 1, justifyContent: 'center', padding: 32, gap: 16}}> 
+      <Input placeholder='Pesquisar' onChangeText={setSearch} value={search} />
+      
       <FlatList 
         data={customers}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Customer data={item} />}
+        renderItem={({ item }) => (
+          <Customer 
+            data={item} 
+            onDelete={() => 
+            remove(item.id)} 
+            onOpen={() => router.navigate(`/details/${item.id}`)}
+          />
+        )}
         contentContainerStyle={{gap: 16}}
       />
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent:'center',
-    alignItems: 'center'
-  },
-  text: {
-    fontSize: 25
-  }
-})
 
 export default Index
