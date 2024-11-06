@@ -41,14 +41,13 @@ const CreateCustomer = () => {
       <Header />
 
       <View style={{justifyContent: 'center', padding: 32, gap: 16}}>
-      <Input placeholder='Nome' onChangeText={setName} value={name} />
-      <Input placeholder='Email' onChangeText={setEmail} value={email}/>
-      <Input placeholder='Telefone' onChangeText={setFone} value={fone}/>
-      <Input placeholder='Endereço' onChangeText={setAdress} value={address}/>
-      
-      <Button title='Salvar' onPress={create}/>
+        <Input placeholder='Nome' onChangeText={setName} value={name} />
+        <Input placeholder='Email' onChangeText={setEmail} value={email}/>
+        <Input placeholder='Telefone' onChangeText={setFone} value={fone}/>
+        <Input placeholder='Endereço' onChangeText={setAdress} value={address}/>
+        
+        <Button title='Salvar' onPress={create}/>
       </View>
-
     </View>
   )
 }

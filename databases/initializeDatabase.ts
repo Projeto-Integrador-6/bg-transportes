@@ -9,5 +9,12 @@ export async function initializeDatabase(database: SQLiteDatabase) {
       fone INTEGER NOT NULL,
       address TEXT NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS produtos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      brand TEXT NOT NULL,
+      quantity INTEGER NOT NULL
+    );
   `)
 }
