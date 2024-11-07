@@ -35,9 +35,6 @@ const Index = () => {
   }, [search])
 
   return (
-
-    
-
     <View> 
       <Header />
 

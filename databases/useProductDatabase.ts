@@ -31,6 +31,46 @@ export function useProductDatabase(){
             await statement.finalizeAsync()
         }
     }
+
+    async function searchByName(name:string) {
+        try {
+            const query = 'SELECT * FROM produtos WHERE name LIKE ?'
+
+            const response = await database.getAllAsync<ProductDatabase>(query,`%${name}%`)
+
+            return response
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async function update(data: ProductDatabase){
+        const statement = await database.prepareAsync(
+            'UPDATE produtos SET name=$name, brand=$brand, quantity=$quantity WHERE id=$id'
+        )
+        
+        try {
+            await statement.executeAsync({
+                $id: data.id,
+                $name: data.name,
+                $brand: data.brand,
+                $quantity: data.quantity
+            })
+
+        } catch (error) {
+            throw error
+        } finally{
+            await statement.finalizeAsync()
+        }
+    }
+
+    async function remove(id:number) {
+        try {
+            await database.execAsync('DELETE FROM produtos WHERE id = ' + id)
+        } catch (error) {
+            
+        }
+    }
     
-    return { create }
+    return { create, searchByName, update, remove }
 }
