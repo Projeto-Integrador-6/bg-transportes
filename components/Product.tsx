@@ -28,10 +28,6 @@ export function Product({data, onDelete, ...rest}: Props){
                 {data.name} - {data.brand} - {data.quantity}
             </Text>
 
-{/*             <TouchableOpacity onPress={onOpen}>
-                <MaterialIcons name="visibility" size={25} color="blue"/>
-            </TouchableOpacity>*/}
-
             <TouchableOpacity onPress={onDelete}>
                 <MaterialIcons name="delete" size={25} color="red"/>
             </TouchableOpacity> 

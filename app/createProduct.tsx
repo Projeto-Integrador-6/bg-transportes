@@ -113,8 +113,8 @@ const CreateProduct = () => {
 
       <Input placeholder='Pesquisar' onChangeText={setSearch}/>
 
-      <ScrollView style={{ height: 160 }}>
       <FlatList 
+        style={{ height: 160 }}
         data={products}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
@@ -124,10 +124,10 @@ const CreateProduct = () => {
            onDelete={() => 
             remove(item.id)} 
           />
+          
         )}
         contentContainerStyle={{gap: 16}}
       />
-      </ScrollView>
 
     </View>
 
