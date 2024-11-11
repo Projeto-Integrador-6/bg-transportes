@@ -11,24 +11,13 @@ import { useRouter } from "expo-router";
 
 type Props = PressableProps & {
     data: {
-        name: string;
-        email: string;
-        fone: number;
-        address: string;
+        description: string;
     };
     onDelete: () => void;
-    onOpen: () => void;
-    onOpenPallet: () => void;
 };
 
-export function Customer({
-    data,
-    onDelete,
-    onOpen,
-    onOpenPallet,
-    ...rest
-}: Props) {
-    const router = useRouter();
+export function Pallet({ data, onDelete, ...rest }: Props) {
+    console.log(`descrição ${data.description}`);
 
     return (
         <Pressable
@@ -41,15 +30,7 @@ export function Customer({
             }}
             {...rest}
         >
-            <Text style={{ flex: 1, fontSize: 25 }}>{data.name}</Text>
-
-            <TouchableOpacity onPress={onOpenPallet}>
-                <MaterialIcons name="inbox" size={25} color="black" />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={onOpen}>
-                <MaterialIcons name="visibility" size={25} color="blue" />
-            </TouchableOpacity>
+            <Text style={{ flex: 1, fontSize: 25 }}>{data.description}</Text>
 
             <TouchableOpacity onPress={onDelete}>
                 <MaterialIcons name="delete" size={25} color="red" />

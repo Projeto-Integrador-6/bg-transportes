@@ -1,69 +1,75 @@
-import { useSQLiteContext } from "expo-sqlite"
+import { useSQLiteContext } from "expo-sqlite";
 
-export type CustomerDatabase ={
-    id: number,
-    name: string,
-    email: string,
-    fone: number,
-    address: string
-}
+export type CustomerDatabase = {
+    id: number;
+    name: string;
+    email: string;
+    fone: number;
+    address: string;
+};
 
-export function useCustomerDatabase(){
-    const database = useSQLiteContext()
+export function useCustomerDatabase() {
+    const database = useSQLiteContext();
 
-    async function create(data: Omit<CustomerDatabase, 'id'>){
+    async function create(data: Omit<CustomerDatabase, "id">) {
         const statement = await database.prepareAsync(
-            'INSERT INTO clientes(name, email, fone, address) VALUES ($name, $email, $fone, $address)'
-        )
-        
+            "INSERT INTO clientes(name, email, fone, address) VALUES ($name, $email, $fone, $address)"
+        );
+
         try {
             const result = await statement.executeAsync({
                 $name: data.name,
                 $email: data.email,
                 $fone: data.fone,
-                $address: data.address
-            })
+                $address: data.address,
+            });
 
-            const insertedRowId = result.lastInsertRowId.toLocaleString()
+            const insertedRowId = result.lastInsertRowId.toLocaleString();
 
-            return { insertedRowId }
+            return { insertedRowId };
         } catch (error) {
-            throw error
-        } finally{
-            await statement.finalizeAsync()
+            throw error;
+        } finally {
+            await statement.finalizeAsync();
         }
     }
 
-    async function searchByName(name:string) {
+    async function searchByName(name: string) {
         try {
-            const query = 'SELECT * FROM clientes WHERE name LIKE ?'
+            const query = "SELECT * FROM clientes WHERE name LIKE ?";
 
-            const response = await database.getAllAsync<CustomerDatabase>(query,`%${name}%`)
+            const response = await database.getAllAsync<CustomerDatabase>(
+                query,
+                `%${name}%`
+            );
 
-            return response
+            return response;
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
-    async function show(id:number) {
+    async function show(id: number) {
         try {
-            const query = "SELECT * FROM clientes WHERE id = ?"
+            const query = "SELECT * FROM clientes WHERE id = ?";
 
-            const response = await database.getFirstAsync<CustomerDatabase>(query, id)
+            const response = await database.getFirstAsync<CustomerDatabase>(
+                query,
+                id
+            );
 
-            return response
+            return response;
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
-    async function remove(id:number) {
+    async function remove(id: number) {
         try {
-            await database.execAsync("DELETE FROM clientes WHERE id =" + id)
+            await database.execAsync("DELETE FROM clientes WHERE id =" + id);
         } catch (error) {
-            throw error
+            throw error;
         }
     }
-    return{ create, searchByName, remove, show }
+    return { create, searchByName, remove, show };
 }

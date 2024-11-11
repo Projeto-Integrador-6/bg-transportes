@@ -37,9 +37,13 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         : route.name;
 
                 if (
-                    ["_sitemap", "+not-found", "details/[id]"].includes(
-                        route.name
-                    )
+                    [
+                        "_sitemap",
+                        "+not-found",
+                        "details/[id]",
+                        "createPallet",
+                        "pallets/[id]",
+                    ].includes(route.name)
                 )
                     return null;
 

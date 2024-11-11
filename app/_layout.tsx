@@ -37,6 +37,13 @@ const _layout = () => {
                         title: "Detalhes do cliente",
                     }}
                 />
+
+                <Tabs.Screen
+                    name="pallets/[id]"
+                    options={{
+                        title: "paletes",
+                    }}
+                />
             </Tabs>
         </SQLiteProvider>
     );
