@@ -39,9 +39,23 @@ const _layout = () => {
                 />
 
                 <Tabs.Screen
+                    name="createPallet"
+                    options={{
+                        title: "Adicionar palete",
+                    }}
+                />
+
+                <Tabs.Screen
                     name="pallets/[id]"
                     options={{
                         title: "paletes",
+                    }}
+                />
+
+                <Tabs.Screen
+                    name="productsInPallet/[id]"
+                    options={{
+                        title: "Lista ",
                     }}
                 />
             </Tabs>

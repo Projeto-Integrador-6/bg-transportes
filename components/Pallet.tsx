@@ -14,9 +14,10 @@ type Props = PressableProps & {
         description: string;
     };
     onDelete: () => void;
+    onOpenProducts: () => void;
 };
 
-export function Pallet({ data, onDelete, ...rest }: Props) {
+export function Pallet({ data, onDelete, onOpenProducts, ...rest }: Props) {
     console.log(`descrição ${data.description}`);
 
     return (
@@ -31,6 +32,10 @@ export function Pallet({ data, onDelete, ...rest }: Props) {
             {...rest}
         >
             <Text style={{ flex: 1, fontSize: 25 }}>{data.description}</Text>
+
+            <TouchableOpacity onPress={onOpenProducts}>
+                <MaterialIcons name="visibility" size={25} color="blue" />
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={onDelete}>
                 <MaterialIcons name="delete" size={25} color="red" />

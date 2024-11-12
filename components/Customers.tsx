@@ -28,8 +28,6 @@ export function Customer({
     onOpenPallet,
     ...rest
 }: Props) {
-    const router = useRouter();
-
     return (
         <Pressable
             style={{

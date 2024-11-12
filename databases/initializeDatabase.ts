@@ -24,14 +24,5 @@ export async function initializeDatabase(database: SQLiteDatabase) {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (cliente_id) REFERENCES clientes(id)
     );
-
-    CREATE TABLE IF NOT EXISTS paletes_produtos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    palete_id INTEGER NOT NULL,
-    produto_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL,
-    FOREIGN KEY (palete_id) REFERENCES paletes(id),
-    FOREIGN KEY (produto_id) REFERENCES produtos(id)
-  );
   `);
 }

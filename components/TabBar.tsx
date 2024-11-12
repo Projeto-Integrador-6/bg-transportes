@@ -43,6 +43,8 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         "details/[id]",
                         "createPallet",
                         "pallets/[id]",
+                        "productsInPallet/[id]",
+                        "addProductsinPallet",
                     ].includes(route.name)
                 )
                     return null;

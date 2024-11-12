@@ -82,6 +82,11 @@ export default function Pallets() {
                     <Pallet
                         data={item}
                         onDelete={() => remove(item.id, item.cliente_id)}
+                        onOpenProducts={() =>
+                            router.navigate(
+                                `/productsInPallet/${item.id}-${item.cliente_id}`
+                            )
+                        }
                     />
                 )}
                 contentContainerStyle={{ gap: 16 }}

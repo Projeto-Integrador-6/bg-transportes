@@ -59,7 +59,7 @@ export default function CreatePallet() {
                     gap: 16,
                 }}
             >
-                <Text>id: {clientId} </Text>
+                <Text>Palete nº: {clientId} </Text>
                 <Input
                     placeholder="Descrição"
                     onChangeText={setDescription}
